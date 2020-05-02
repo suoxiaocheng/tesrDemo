@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>电话</th>
+        <th>邮箱</th>
+        <th>添加</th>
+        <th>删除</th>
+        <th>修改</th>
+    </tr>
+    <tr th:each="usr:${page.getRecords()}">
+        <td th:text="${usr.id}"></td>
+        <td th:text="${usr.phone}"></td>
+        <td th:text="${usr.email}"></td>
+        <td><a th:href="@{'addUser'}">添加</a></td>
+        <td><a th:href="@{'deleteUser/'+${usr.id}}">删除</a></td>
+        <td><a th:href="@{'updateUser/'+${usr.id}}">修改</a></td>
+    </tr>
+</table>
+<!--<h2 th:each="page:${page}">
+    <p th:text="${page.getSize()}"></p>
+    <p th:text="${page.getPages()}"></p>
+    <p th:text="${page.getTotal()}"></p>
+</h2>-->
+<a th:href="'index?pageIndex='+${page.getCurrent()-1}">上一页</a>
+<a th:href="'index?pageIndex='+${page.getCurrent()+1}">下一页</a>
+</body>
+</html>
